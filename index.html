@@ -25,6 +25,8 @@
         --accent-soft-purple: #7b1fa2;
         --danger: #ff5252;
         --success: #66bb6a;
+        --highlight-bg: rgba(41, 182, 246, 0.35); /* accent-blue soft neon */ 
+        --highlight-opacity: 0.55;
         --shadow-neon: 0 0 12px rgba(41, 182, 246, 0.7),
           0 0 24px rgba(171, 71, 188, 0.5);
         --shadow-soft: 0 2px 6px rgba(0, 0, 0, 0.15);
@@ -54,6 +56,8 @@
           #e0e0f0 100%
         );
         color: var(--text-light);
+        --highlight-bg: rgba(25, 118, 210, 0.25); /* accent-soft-blue */ 
+        --highlight-opacity: 0.45;
       }
 
       h1 {
@@ -359,6 +363,19 @@
       a.link:hover {
         text-decoration: underline;
       }
+      .highlight {
+  background: linear-gradient(
+    120deg,
+    var(--highlight-bg) 0%,
+    var(--highlight-bg) 100%
+  );
+  background-size: 100% var(--highlight-opacity);
+  background-repeat: no-repeat;
+  background-position: 0 70%;
+  padding: 0 2px;
+  border-radius: 2px;
+}
+
     </style>
   </head>
   <body>
@@ -659,7 +676,7 @@
             }
           }
 
-          output.innerHTML = results .map(line => line.replace(/(\d+-\d+)/g, "<strong>$1</strong>")) .join("<br><br>");
+          output.innerHTML = results .map(line => line.replace(/(\d+-\d+)/g, "<span class='highlight'>$1</span>")) .join("<br><br>");
           status.textContent = "Last update: " + new Date().toLocaleString();
           updateHistoryDisplay();
         } catch (e) {
@@ -785,6 +802,7 @@
     </script>
   </body>
 </html>
+
 
 
 
