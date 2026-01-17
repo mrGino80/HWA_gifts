@@ -4,13 +4,11 @@
     <meta charset="UTF-8" />
     <title>HWA Gifts Codes</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    <!-- Futuristic HUD-like font -->
+    <link rel="manifest" href="manifest.json">
     <link
       href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;600&display=swap"
       rel="stylesheet"
     />
-
     <style>
       :root {
         --bg-dark: #050510;
@@ -486,6 +484,10 @@
     </div>
 
     <script>
+      if ("serviceWorker" in navigator) 
+      { 
+        navigator.serviceWorker.register("./sw.js"); 
+      }
       const STORAGE_KEY_SETTINGS = "ym_settings_v1";
       const STORAGE_KEY_HISTORY = "ym_history_v1";
 
@@ -803,6 +805,7 @@
     </script>
   </body>
 </html>
+
 
 
 
