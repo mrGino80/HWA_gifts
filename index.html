@@ -486,6 +486,7 @@
     <script>
       if ("serviceWorker" in navigator) 
       { 
+        console.log("sw");
         navigator.serviceWorker.register("./sw.js"); 
       }
       const STORAGE_KEY_SETTINGS = "ym_settings_v1";
@@ -805,6 +806,7 @@
     </script>
   </body>
 </html>
+
 
 
 
