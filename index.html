@@ -659,7 +659,7 @@
             }
           }
 
-          output.textContent = results.join("<br><br>").replace(/(\d+-\d+)/g, "<strong>$1</strong>");
+          output.innerHTML = results .map(line => line.replace(/(\d+-\d+)/g, "<strong>$1</strong>")) .join("<br><br>");
           status.textContent = "Last update: " + new Date().toLocaleString();
           updateHistoryDisplay();
         } catch (e) {
@@ -785,6 +785,7 @@
     </script>
   </body>
 </html>
+
 
 
 
