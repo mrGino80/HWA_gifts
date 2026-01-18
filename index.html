@@ -740,14 +740,7 @@
           }
 
           output.innerHTML = results .map(line => line.replace(/(\d+-\d+)/g, "<span class='highlight'>$1</span>")) .join("<br><br>");
-          output.querySelectorAll(".highlight").forEach(el => {
-            el.addEventListener("click", () => {
-              const text = el.textContent.trim();
-              navigator.clipboard.writeText(text);
-              el.classList.add("copied");
-              setTimeout(() => el.classList.remove("copied"), 600);
-            });
-          });
+          attachCopyListeners();
 
           status.textContent = "Last update: " + new Date().toLocaleString();
           updateHistoryDisplay();
@@ -875,10 +868,26 @@
         const panel = header.closest(".panel");
         panel.classList.toggle("collapsed");
       }
+      function attachCopyListeners() {
+        const items = output.querySelectorAll(".highlight");
+      
+        items.forEach(el => {
+          el.addEventListener("click", () => {
+            const text = el.textContent.trim();
+            navigator.clipboard.writeText(text);
+      
+            // feedback visivo
+            el.classList.add("copied");
+            setTimeout(() => el.classList.remove("copied"), 600);
+          });
+        });
+      }
+
 
     </script>
   </body>
 </html>
+
 
 
 
