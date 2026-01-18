@@ -406,6 +406,24 @@
         overflow: hidden;
       }
 
+      .highlight {
+          cursor: pointer;
+          transition: opacity 0.2s ease;
+        }
+        
+        .highlight:hover {
+          opacity: 0.8;
+        }
+        
+        .highlight.copied {
+          animation: copiedFlash 0.4s ease;
+        }
+        
+        @keyframes copiedFlash {
+          0% { background-color: rgba(102, 187, 106, 0.4); }
+          100% { background-color: transparent; }
+        }
+
 
     </style>
   </head>
@@ -722,6 +740,15 @@
           }
 
           output.innerHTML = results .map(line => line.replace(/(\d+-\d+)/g, "<span class='highlight'>$1</span>")) .join("<br><br>");
+          output.querySelectorAll(".highlight").forEach(el => {
+            el.addEventListener("click", () => {
+              const text = el.textContent.trim();
+              navigator.clipboard.writeText(text);
+              el.classList.add("copied");
+              setTimeout(() => el.classList.remove("copied"), 600);
+            });
+          });
+
           status.textContent = "Last update: " + new Date().toLocaleString();
           updateHistoryDisplay();
         } catch (e) {
@@ -852,6 +879,7 @@
     </script>
   </body>
 </html>
+
 
 
 
